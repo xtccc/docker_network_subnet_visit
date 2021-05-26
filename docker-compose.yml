@@ -1,0 +1,92 @@
+services:
+  node1:
+    command:  /usr/sbin/sshd -D 
+    hostname : node1
+    image: centos:ssh
+    init : true
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.227.1
+
+
+  node2:
+    command:  /usr/sbin/sshd -D
+    init : true    
+    hostname : node2
+    image: centos:ssh
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.227.2
+    
+  node3:
+    hostname : node3
+    image: centos:ssh
+    command:  /usr/sbin/sshd -D
+    init : true    
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.227.3
+    
+
+  node4:
+    hostname : node4
+    image: centos:ssh
+    command:  /usr/sbin/sshd -D
+    init : true    
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.227.4
+      vpcbr2:
+        ipv4_address: 192.168.228.4
+
+
+  node5:
+    hostname : node5
+    image: centos:ssh
+    command:  /usr/sbin/sshd -D
+    init : true    
+    networks:
+      vpcbr2:
+        ipv4_address: 192.168.228.5
+
+  node6:
+    hostname : node6
+    image: centos:ssh
+    command:  /usr/sbin/sshd -D
+    init : true    
+    networks:
+      vpcbr2:
+        ipv4_address: 192.168.228.6
+
+  node7:
+    hostname : node7
+    image: centos:ssh
+    command:  /usr/sbin/sshd -D
+    init : true    
+    networks:
+      vpcbr2:
+        ipv4_address: 192.168.228.7
+
+  node8:
+    hostname : node8
+    image: centos:ssh
+    command:  /usr/sbin/sshd -D
+    init : true    
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.227.8    
+      vpcbr2:
+        ipv4_address: 192.168.228.8
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 192.168.227.0/24
+         gateway: 192.168.227.12
+  vpcbr2:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 192.168.228.0/24
+         gateway: 192.168.228.12
